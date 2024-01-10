@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 function StudentCrud() {
-  const [id, setId] = useState('');
-  const [stname, setName] = useState('');
-  const [course, setCourse] = useState('');
+  const [id, setId] = useState("");
+  const [name, setName] = useState("")
+  const [course, setCourse] = useState ("")
   const [students, setStudents] = useState([]);
 
   useEffect(() => {
@@ -23,17 +23,18 @@ function StudentCrud() {
   async function save(event) {
     event.preventDefault();
     try {
-      await axios.post('https://localhost:7172/api/Student/AddStudent', {
-        stname: stname,
-        course: course,
+      await axios.post("https://localhost:7172/api/Student/AddStudent", {
+        stname: name,
+        course: course
+        
       });
-      alert('Student Registration Successfully');
-      setName('');
-      setCourse('');
+      alert("Student Registration Successfully");
+      setName("");
+      setCourse("");
       Load();
     } catch (err) {
-      console.error('Error registering student:', err);
-      alert('Failed to register student');
+      console.error("Error registering student:", err);
+      alert("Failed to register student");
     }
   }
 
@@ -62,7 +63,7 @@ function StudentCrud() {
     try {
       await axios.patch(`https://localhost:7172/api/Student/UpdateStudent/${id}`, {
         id: id,
-        stname: stname,
+        stname: name,
         course: course,
       });
       alert('Student details updated');
@@ -86,11 +87,12 @@ function StudentCrud() {
               type="text"
               className="form-control"
               id="stname"
-              value={stname}
+              value={name}
               onChange={(event) => setName(event.target.value)}
               placeholder="Enter student name"
             />
           </div>
+          <br />
           <div className="form-group">
             <input
               type="text"
